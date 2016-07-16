@@ -35,15 +35,15 @@ Criando um gp, nome do diretório de trabalho = "teste1".
 	Input  = lista min até max de step, ex: min=1 max=4 step=1 '(1 2 3 4)
 	Target = lista funcao(x), para x de min até max de step, ex: min=1 max=4 step=1 '(1 4 9 16)
 
-* Gerando relatório
-  	  
-	  > (gp1)  ;;cria o arquivo 'gp.xml'
+	;;Gerando relatório
 
-* Testando um valor, na formula encontrada
+	> (gp1)  ;;cria o arquivo 'gp.xml'
 
-  	  > (gp1 #:point 3.5)
+	;;Testando um valor, na formula encontrada
+
+	> (gp1 #:point 3.5)
 	12.25
 
-* Plotando o gráfico da formula encontrada
+	;;Plotando o gráfico da formula encontrada
 
-  	  > (gp1 #:min-plot 0 #:max-plot 10)
+	> (gp1 #:min-plot 0 #:max-plot 10)
