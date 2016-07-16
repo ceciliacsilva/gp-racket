@@ -1,9 +1,5 @@
 #lang racket
 
-#|
-
-|#
-
 (require plot)
 (plot-new-window? #t)
 
@@ -373,7 +369,7 @@
                  )))
              (formula-resposta (individuo-parametros-formula individuo-resposta)))
         ;;individuo-resposta
-        (lambda (#:point [ponto #f] #:min-plot [min-grafico #f] #:max-plot [max-grafico #f])
+        (lambda (#:point [ponto #f] #:min-graph [min-grafico #f] #:max-graph [max-grafico #f])
           (cond [(number? ponto)
                  (formula-run formula-resposta ponto)]
                 [(and (number? min-grafico) (number? max-grafico))
