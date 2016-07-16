@@ -3,7 +3,7 @@ Genetic Programming
 
 Esse projeto é minha primeira experiência em Genetic Programming (GP), a linguagem escolhida foi Racket Language. Os casos de teste são exemplos no REPL. Lembrando:
 
-     "In genetic programming we evolve a population of computer programs. That is, generation by generation, GP stochastically transforms populations of programs into new, hopefully better, populations of programs. GP, like nature, is a random process, and it can never guarantee results. GP's essential randomness, however, can lead it to escape traps which deterministic methods may be captured by. Like nature, GP has been very successful at evolving novel and unexpected ways of solving problems." - A Field Guide to Genetic Programming (ISBN 978-1-4092-0073-4)
+"In genetic programming we evolve a population of computer programs. That is, generation by generation, GP stochastically transforms populations of programs into new, hopefully better, populations of programs. GP, like nature, is a random process, and it can never guarantee results. GP's essential randomness, however, can lead it to escape traps which deterministic methods may be captured by. Like nature, GP has been very successful at evolving novel and unexpected ways of solving problems." - A Field Guide to Genetic Programming (ISBN 978-1-4092-0073-4)
 
 Tipicamente em algoritmos evolutivos (AEs), entre eles GP, a população inicial é normalmente gerada de maneira aleatória. Existem diferentes caminho para isso, nesse caso foi usado Ramped half-and-half, combinação entre os métodos Grow e Full.
 
@@ -36,14 +36,14 @@ Criando um gp, nome do diretório de trabalho = "teste1".
 	Target = lista funcao(x), para x de min até max de step, ex: min=1 max=4 step=1 '(1 4 9 16)
 
 * Gerando relatório
-
-  	> (gp1)  ;;cria o arquivo 'gp.xml'
+  	  
+	  > (gp1)  ;;cria o arquivo 'gp.xml'
 
 * Testando um valor, na formula encontrada
 
-  	> (gp1 #:point 3.5)
+  	  > (gp1 #:point 3.5)
 	12.25
 
 * Plotando o gráfico da formula encontrada
 
-  	> (gp1 #:min-plot 0 #:max-plot 10)
+  	  > (gp1 #:min-plot 0 #:max-plot 10)
