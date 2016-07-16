@@ -11,14 +11,14 @@ Objetivo é a partir do Input e do Target, Input = '(1 2 3 4) e Target = '(1 4 9
 
 * O critério de parada do algoritmo é descrito na estrutura - gp-finalizar.
 
-  (define-struct gp-finalizar
-    (fitness-min repeticoes))
+      (define-struct gp-finalizar
+      		     (fitness-min repeticoes))
     ;;até atingir "fitness-min" ou repetir o melhor fitness por "repeticoes"
 
 * Parametros da população estrutura - gp-parametros
 
-  (define-struct gp-parametros
-    (max-populacao taxa-mutacao chance-mutacao max-depth))
+      (define-struct gp-parametros
+      		       (max-populacao taxa-mutacao chance-mutacao max-depth))
     ;;max-depth máxima profundidade de uma formula
     ;;taxa-mutacao e chance-mutacao usados para mutacionar a população
     ;;max-populacao tamanho da população
@@ -35,15 +35,15 @@ Criando um gp, nome do diretório de trabalho = "teste1".
 	Input  = lista min até max de step, ex: min=1 max=4 step=1 '(1 2 3 4)
 	Target = lista funcao(x), para x de min até max de step, ex: min=1 max=4 step=1 '(1 4 9 16)
 
-* Gerando relatório:
+* Gerando relatório
 
   	> (gp1)  ;;cria o arquivo 'gp.xml'
 
-* Testando um valor, na formula encontrada:
+* Testando um valor, na formula encontrada
 
   	> (gp1 #:point 3.5)
 	12.25
 
-* Plotando o gráfico da formula encontrada:
+* Plotando o gráfico da formula encontrada
 
   	> (gp1 #:min-plot 0 #:max-plot 10)

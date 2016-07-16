@@ -1,8 +1,10 @@
 #lang racket
 
-#|
 
-|#
+;;Cecília Carneiro e Silva
+;;Graduanda em Engenharia Elétrica - Universidade Federal de Uberlândia
+;;--------------
+;;Genetic Programming em Racket Language, primeira experiência
 
 (require plot)
 (plot-new-window? #t)
