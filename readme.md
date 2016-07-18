@@ -63,4 +63,5 @@ No final do bloco 'gp-interface'
 	 ;;Evaluate this emacs-lisp code block (gp-interface) on your system? (yes or no) yes
 
 Usar os dados no programa:
-     	 ;;> (gp-arq <nome-projeto>) 
+
+	 ;;> (gp-arq <nome-projeto>) 
