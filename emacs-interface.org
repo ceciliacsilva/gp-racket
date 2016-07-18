@@ -1,0 +1,64 @@
+#+TITLE: GP - Emacs interface
+#+AUTHOR: Cecília Carneiro e Silva
+#+DATE:
+
+* Versao final
+
+#+NAME: gp-teste
+| input | target |
+| 1     | 2      |
+| 2     | 4      |
+| 3     | 6      |
+| 4     | 8      |
+| 10    | 20     |
+| 6     | 12     |
+
+#+BEGIN_SRC emacs-lisp :var gp-campos=gp-teste[0,] gp-dados=gp-teste
+  (defun posicao-in-out (tabela-lista input target)
+    (let ((lista tabela-lista)
+          (input-posicao  0)
+          (output-posicao 0)
+          (i 0))
+      (while lista
+        (cond ((equal (car lista) input)
+               (setq input-posicao i))
+              ((equal (car lista) target)
+               (setq output-posicao i)))
+        (setq i (+ i 1))
+        (setq lista (cdr lista)))
+      (list input-posicao output-posicao))
+    )
+
+  (defun coluna-lista (tabela posicao)
+    (let ((lista tabela)
+          (lista-resposta '()))
+      (while lista
+        (setq lista-resposta (cons (nth posicao (car lista)) lista-resposta))
+        (setq lista (cdr lista)))
+      lista-resposta)
+    )
+
+  (defun gp-main (gp-nome tabela campos input target)
+    (let ((input-l
+           (coluna-lista tabela
+                         (car (posicao-in-out campos input target))))
+          (output-l
+           (coluna-lista tabela
+                         (cadr (posicao-in-out campos input target)))))
+      (let ((input-lista  (cdr (reverse input-l)))
+            (output-lista (cdr (reverse output-l))))
+        (cond ((not (file-exists-p (concat "output/" gp-nome)))
+               (make-directory (concat "output/" gp-nome))))
+        (shell-command (format "echo '%s' >  output/%s/input" "(" gp-nome))
+        (shell-command (format "echo '%s' >> output/%s/input"  input-lista gp-nome))
+        (shell-command (format "echo '%s' >> output/%s/input" output-lista gp-nome))
+        (shell-command (format "echo '%s' >> output/%s/input" ")" gp-nome))
+        ))
+    )
+
+  (gp-main "teste5" gp-dados gp-campos "input" "target")
+
+#+END_SRC
+
+#+RESULTS:
+: 0

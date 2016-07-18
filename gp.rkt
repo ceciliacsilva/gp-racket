@@ -400,6 +400,43 @@
     )
   )
 
+(define (gp-arq nome-dir [operadores *operadores*]
+                #:gp-valor [gp-valores gp-padrao])
+  (let* ((dir-trabalho (string-append *dir-output* nome-dir))
+         (grafico (string-append dir-trabalho "/" "grafico.png")))
+    (cond ((directory-exists? dir-trabalho)
+           (copy-file (string-append *dir-output* "gp.xsl")
+                      (string-append dir-trabalho "/gp.xsl"))))
+    (let ((input-output
+           (call-with-input-file (string-append dir-trabalho "/input")
+             (lambda(p)
+               (read p)))))
+      (let ((input-lista  (car input-output))
+            (output-lista (cadr input-output)))
+        (let* ((individuo-resposta
+                (call-with-output-file #:mode 'text #:exists 'replace
+                  (string-append dir-trabalho "/" "log")
+                  (lambda(p)
+                    (gp-parametros-display gp-valores p)
+                    (gp-run input-lista output-lista operadores #:fd p #:gp-valor gp-valores)
+                    )))
+               (formula-resposta (individuo-parametros-formula individuo-resposta)))
+          (call-with-output-file #:mode 'text #:exists 'replace
+                   (string-append dir-trabalho "/" "gp.xml")
+                   (lambda(p)
+                     (inicio-display p)
+                     (gp-parametros-display gp-valores p)
+                     (individuo-display individuo-resposta p)
+                     (tabela-display input-lista output-lista p)
+                     (grafico-display "grafico.png" p)
+                     (grafico-plot input-lista output-lista
+                                   formula-resposta grafico)
+                     (fim-display p)
+                     ))
+          ))
+      ))
+  )
+
 (define (grafico-plot input-lista output-lista formula nome-grafico #:file? [plot-file? #t])
   (let ((entrada (points
                  (for/list ((input  (in-list input-lista))
