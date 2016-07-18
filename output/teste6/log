@@ -1,0 +1,13 @@
+<max-populacao>
+130
+</max-populacao>
+<taxa-mutacao>
+20
+</taxa-mutacao>
+<chance-mutacao>
+60
+</chance-mutacao>
+<max-depth>
+4
+</max-depth>
+Best fitness: 1.0

@@ -6,6 +6,20 @@
 ;;--------------
 ;;Genetic Programming em Racket Language, primeira experiência
 
+;;Usos:
+;;> (define gp (gp-run-funcao "teste1" 1 4 1 (lambda(a)  (* a a))))
+;;> (gp)
+;;> (define gp-outros-parametros (make-gp-parametros 130 20 60 4))
+;;> (define gp1 (gp-run-funcao "teste6" 1 4 1 (lambda(a)  (* a a)) #:gp-valor gp-outros-parametros))
+;;> (gp1)
+;;> (gp1 #:point 20)
+
+;;Alterar os criterios de finalizacao: mudar a estrutura 'gp-fim'
+;;ex:
+;;(set! gp-fim (make-gp-fim 0.98 200))
+
+;;Relatorio gerado: gp.xml, dentro da pasta do projeto.
+
 (require plot)
 (plot-new-window? #t)
 
@@ -404,7 +418,7 @@
                 #:gp-valor [gp-valores gp-padrao])
   (let* ((dir-trabalho (string-append *dir-output* nome-dir))
          (grafico (string-append dir-trabalho "/" "grafico.png")))
-    (cond ((directory-exists? dir-trabalho)
+    (cond ((and (directory-exists? dir-trabalho) (not (file-exists? (string-append dir-trabalho "/gp.xsl"))))
            (copy-file (string-append *dir-output* "gp.xsl")
                       (string-append dir-trabalho "/gp.xsl"))))
     (let ((input-output
@@ -421,18 +435,27 @@
                     (gp-run input-lista output-lista operadores #:fd p #:gp-valor gp-valores)
                     )))
                (formula-resposta (individuo-parametros-formula individuo-resposta)))
-          (call-with-output-file #:mode 'text #:exists 'replace
-                   (string-append dir-trabalho "/" "gp.xml")
-                   (lambda(p)
-                     (inicio-display p)
-                     (gp-parametros-display gp-valores p)
-                     (individuo-display individuo-resposta p)
-                     (tabela-display input-lista output-lista p)
-                     (grafico-display "grafico.png" p)
-                     (grafico-plot input-lista output-lista
-                                   formula-resposta grafico)
-                     (fim-display p)
-                     ))
+          (lambda (#:point [ponto #f] #:min-plot [min-grafico #f] #:max-plot [max-grafico #f])
+            (cond [(number? ponto)
+                   (formula-run formula-resposta ponto)]
+                  [(and (number? min-grafico) (number? max-grafico))
+                   (plot (function (lambda(x) (formula-run formula-resposta x))
+                                   min-grafico max-grafico))]
+                  [else
+                   (call-with-output-file #:mode 'text #:exists 'replace
+                     (string-append dir-trabalho "/" "gp.xml")
+                     (lambda(p)
+                       (inicio-display p)
+                       (gp-parametros-display gp-valores p)
+                       (individuo-display individuo-resposta p)
+                       (tabela-display input-lista output-lista p)
+                       (grafico-display "grafico.png" p)
+                       (grafico-plot input-lista output-lista
+                                     formula-resposta grafico)
+                       (fim-display p)
+                       ))
+                   ])
+            )
           ))
       ))
   )

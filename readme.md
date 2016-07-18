@@ -64,4 +64,8 @@ No final do bloco 'gp-interface'
 
 Usar os dados no programa:
 
-	 ;;> (gp-arq <nome-projeto>) 
+	 ;;> (define gp2 (gp-arq "teste5"))
+	 ;;> (gp2)
+	 ;;> (gp2 #:point 7)
+	 ;;14
+	 ;;> (gp2 #:min-plot 0 #:max-plot 10)
