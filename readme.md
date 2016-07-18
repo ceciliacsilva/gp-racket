@@ -47,3 +47,20 @@ Criando um gp, nome do diretório de trabalho = "teste1".
 	;;Plotando o gráfico da formula encontrada
 
 	> (gp1 #:min-plot 0 #:max-plot 10)
+
+Emacs Interface
+----------
+
+Simples interface. Seguir instruções "emacs-interface.org".
+
+No final do bloco 'gp-interface'
+
+	 ;;(gp-main <nome-projeto> <tabela-dados> <campos-dados> <coluna-input> <coluna-output>)
+	 ;;ex:
+	 ;;(gp-main "teste5" gp-dados gp-campos "input" "target")
+
+	 ;;C-c C-c
+	 ;;Evaluate this emacs-lisp code block (gp-interface) on your system? (yes or no) yes
+
+Usar os dados no programa:
+     	 ;;> (gp-arq <nome-projeto>) 

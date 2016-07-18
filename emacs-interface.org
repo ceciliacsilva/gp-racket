@@ -2,7 +2,7 @@
 #+AUTHOR: Cecília Carneiro e Silva
 #+DATE:
 
-* Versao final
+* GP-Racket
 
 #+NAME: gp-teste
 | input | target |
@@ -13,6 +13,7 @@
 | 10    | 20     |
 | 6     | 12     |
 
+#+NAME: gp-interface
 #+BEGIN_SRC emacs-lisp :var gp-campos=gp-teste[0,] gp-dados=gp-teste
   (defun posicao-in-out (tabela-lista input target)
     (let ((lista tabela-lista)
@@ -56,6 +57,11 @@
         ))
     )
 
+  ;;Para usar:
+  ;;(gp-main <nome-projeto> <tabela-dados> <campos-dados> <coluna-input> <coluna-output>)
+  ;; C-c C-c
+  ;;No Racket:
+  ;;> (gp-arq <nome-projeto>)
   (gp-main "teste5" gp-dados gp-campos "input" "target")
 
 #+END_SRC
