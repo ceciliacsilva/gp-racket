@@ -9,6 +9,7 @@
 ;;Usos:
 ;;> (define gp (gp-run-funcao "teste1" 1 4 1 (lambda(a)  (* a a))))
 ;;> (gp)
+;;> (gp #:min-plot 0 #:max-plot 20)
 ;;> (define gp-outros-parametros (make-gp-parametros 130 20 60 4))
 ;;> (define gp1 (gp-run-funcao "teste6" 1 4 1 (lambda(a)  (* a a)) #:gp-valor gp-outros-parametros))
 ;;> (gp1)
@@ -48,7 +49,7 @@
 (define gp-max-manter (lambda(gp-valores)
                         (/ (gp-parametros-max-populacao gp-valores) 2)))
 
-(define *operadores* '(+ - * /))
+(define *operadores* '(+ - * / expt))
 
 (define *dir-output* "output/")
 
