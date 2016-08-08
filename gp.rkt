@@ -49,7 +49,7 @@
 (define gp-max-manter (lambda(gp-valores)
                         (/ (gp-parametros-max-populacao gp-valores) 2)))
 
-(define *operadores* '(+ - * / expt))
+(define *operadores* '(+ - * /))
 
 (define *dir-output* "output/")
 
@@ -279,7 +279,8 @@
     )
   )
 
-(define (populacao-proxima-geracao populacao input-lista output-lista operadores #:gp-valor [gp-valores gp-padrao])
+(define (populacao-proxima-geracao populacao input-lista output-lista
+                                   operadores #:gp-valor [gp-valores gp-padrao])
   (let* ((max-populacao  (gp-parametros-max-populacao gp-valores))
          (taxa-mutacao   (gp-parametros-taxa-mutacao gp-valores))
          (chance-mutacao (gp-parametros-chance-mutacao gp-valores))
@@ -336,6 +337,7 @@
                 #:fd [fd-arq (current-output-port)]  #:gp-valor [gp-valores gp-padrao])
   (let* ((populacao-inicial     (populacao-criar-inicial operadores))
          (populacao-inicial-ord (populacao-ordena populacao-inicial input-lista output-lista)))
+    ;;(displayln (~a populacao-inicial "   " populacao-inicial-ord))
     (let loop ((repete 0) (melhor-fitness 0) (pop-aux populacao-inicial-ord))
       (let ((nova-geracao (populacao-proxima-geracao pop-aux input-lista output-lista
                                                      operadores #:gp-valor gp-valores)))
