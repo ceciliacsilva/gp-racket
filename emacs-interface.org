@@ -7,10 +7,10 @@
 #+NAME: gp-teste
 | input | target |
 | 1     | 2      |
-| 2     | 4      |
-| 3     | 6      |
+| 3     | 4      |
+| 7     | 9      |
 | 4     | 8      |
-| 10    | 20     |
+| 10    | 22     |
 | 6     | 12     |
 
 #+NAME: gp-interface
@@ -62,9 +62,13 @@
   ;; C-c C-c
   ;;No Racket:
   ;;> (gp-arq <nome-projeto>)
-  (gp-main "teste5" gp-dados gp-campos "input" "target")
+
+  (gp-main "teste9" gp-dados gp-campos "input" "target")
 
 #+END_SRC
+
+#+RESULTS: gp-interface
+: 0
 
 #+RESULTS:
 : 0

@@ -14,6 +14,8 @@
 ;;> (define gp1 (gp-run-funcao "teste6" 1 4 1 (lambda(a)  (* a a)) #:gp-valor gp-outros-parametros))
 ;;> (gp1)
 ;;> (gp1 #:point 20)
+;;> (define gp (gp-arq "teste9")) ;;Rodar o input criado pelo emacs
+;;> (gp)
 
 ;;Alterar os criterios de finalizacao: mudar a estrutura 'gp-fim'
 ;;ex:
@@ -337,7 +339,7 @@
                 #:fd [fd-arq (current-output-port)]  #:gp-valor [gp-valores gp-padrao])
   (let* ((populacao-inicial     (populacao-criar-inicial operadores))
          (populacao-inicial-ord (populacao-ordena populacao-inicial input-lista output-lista)))
-    ;;(displayln (~a populacao-inicial "   " populacao-inicial-ord))
+    ;;(displayln (~a populacao-inicial "   " populacao-inicial-ord "\n"))
     (let loop ((repete 0) (melhor-fitness 0) (pop-aux populacao-inicial-ord))
       (let ((nova-geracao (populacao-proxima-geracao pop-aux input-lista output-lista
                                                      operadores #:gp-valor gp-valores)))
