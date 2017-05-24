@@ -1,7 +1,7 @@
 Genetic Programming
 -----------------
 
-Esse projeto é minha primeira experiência em Genetic Programming (GP), a linguagem escolhida foi Racket Language. Os casos de teste são exemplos no REPL. Lembrando:
+Esse repositório é meu "baby step" em programação genética (GP), os programas foram escritos em Racket Language. Esse projeto é uma mistura dos conceito desse blog(http://aerique.blogspot.com.br/2011/01/baby-steps-into-genetic-programming.html) com algumas adaptações das minhas aulas sobre algorítmos genéticos. "Ceci n'est pas un tutorial" são alguns testes.
 
 "In genetic programming we evolve a population of computer programs. That is, generation by generation, GP stochastically transforms populations of programs into new, hopefully better, populations of programs. GP, like nature, is a random process, and it can never guarantee results. GP's essential randomness, however, can lead it to escape traps which deterministic methods may be captured by. Like nature, GP has been very successful at evolving novel and unexpected ways of solving problems." - A Field Guide to Genetic Programming (ISBN 978-1-4092-0073-4)
 
